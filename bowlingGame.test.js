@@ -14,4 +14,11 @@ describe('Bowling Game Score Calculator', () => {
         const score = calculateBowlingScore(frames);
         expect(score).toBe(expectedScore);
     });
+
+    test('All Open Frames', () => {
+        const frames = '45 54 36 27 09 63 72 81 90 18';
+        const expectedScore = 90;
+        const score = calculateBowlingScore(frames);
+        expect(score).toBe(expectedScore);
+    });
 });
