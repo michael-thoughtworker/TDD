@@ -8,42 +8,53 @@ Please design a program to calculate the total score of a bowling game. The scor
 - In the tenth frame, the player may have up to three throws. If a STRIKE or a SPARE occurs in the tenth frame, the player is allowed a third throw.
 - The total score of the game is the sum of the scores from all ten frames.
 
+Bowling Score Calculator - Test Cases
+This document outlines the test cases for a Bowling Score Calculator. These tests ensure that the calculator accurately computes scores based on various bowling scenarios, adhering to standard bowling rules.
 
-To thoroughly test a program that calculates the total score of a bowling game based on the rules provided, you should consider the following test scenarios:
-
-All Strikes: Test a game where the player hits a strike in every frame. This scenario checks the calculation of the bonus for strikes, especially in the sequence of strikes.
-Input: X X X X X X X X X X X X
-Expected Output: 300 (Maximum possible score)
-All Spares: Test a game where the player hits a spare in every frame, with a specific number of pins knocked down in the first throw.
-Input: 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5
-Expected Output: 150
-All Open Frames: Test a game with no strikes or spares. Each frame should have a specific combination of two throws that do not knock down all ten pins.
-Input: 45 54 36 27 09 63 72 81 90 18
-Expected Output: 90
-Mixed Types: Test a game with a mix of strikes, spares, and open frames.
-Input: X 7/ 9- X -8 8/ -6 X X 34 7/3
-Expected Output: Calculate based on rules.
-Tenth Frame Variations:
-Scenario A: Tenth frame with three strikes.
-Input: -- -- -- -- -- -- -- -- -- XXX
-Expected Output: 30
-Scenario B: Tenth frame with a spare followed by a strike.
-Input: -- -- -- -- -- -- -- -- -- 2/X
-Expected Output: 20
-Scenario C: Tenth frame with no bonus throw.
-Input: -- -- -- -- -- -- -- -- -- 45
-Expected Output: 9
-Perfect Game with Different Notations: Test the program's ability to handle different valid input formats for a perfect game.
-Input Variations: X X X X X X X X X XXX, XXXXXXXXXXXX
-Expected Output: 300
-Edge Cases:
-Zero Score Game: All throws hit no pins.
-Input: -- -- -- -- -- -- -- -- -- --
+Test Cases Overview
+Test All Gutter Balls
+Description: All throws knock down 0 pins.
+Input: ['--', '--', '--', '--', '--', '--', '--', '--', '--', '--']
 Expected Output: 0
-Invalid Inputs: Inputs that do not conform to the expected format or illegal pin counts.
-Input: X X X X X X X X X X X X X
-Expected Output: Error or specific handling message
-Sequential Spares and Strikes:
-Test sequences where spares and strikes occur back-to-back to ensure proper bonus calculations.
-Input: X 7/ X 7/ X 7/ X 7/ X 7/X
-Expected Output: Calculate based on rules.
+Test All Strikes
+Description: Every frame results in a strike.
+Input: ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'XXX']
+Expected Output: 300
+Test All Spares
+Description: Each frame ends with a spare, and the first throw of each frame knocks down 5 pins.
+Input: ['5/', '5/', '5/', '5/', '5/', '5/', '5/', '5/', '5/', '5/5']
+Expected Output: 150
+Test Mixed Game
+Description: A game with a mix of strikes, spares, and open frames.
+Input: ['X', '7/', '72', '--', 'X', 'X', '35', '5/', '8/', 'XXX']
+Expected Output: Score based on rules
+Test Final Frame Variations
+Description: Variations in the final frame:
+Strike followed by a spare
+Input: ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X5/']
+Expected Output: Score based on rules
+Spare followed by a strike
+Input: ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '5/X']
+Expected Output: Score based on rules
+Three strikes
+Input: ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'XXX']
+Expected Output: 300
+Test Single Frame Scenarios
+Description: Scenarios focusing on a single frame:
+Single strike frame
+Input: ['X', '--', '--', '--', '--', '--', '--', '--', '--', '--']
+Expected Output: 10
+Test Edge Cases
+Description: Handling consecutive strikes and spares:
+Consecutive strikes
+Input: ['X', 'X', '--', '--', '--', '--', '--', '--', '--', '--']
+Expected Output: Score based on rules
+Consecutive spares
+Input: ['5/', '5/', '--', '--', '--', '--', '--', '--', '--', '--']
+Expected Output: Score based on rules
+Spare in the 10th frame
+Input: ['--', '--', '--', '--', '--', '--', '--', '--', '--', '5/5']
+Expected Output: Score based on rules
+Strike in the 10th frame
+Input: ['--', '--', '--', '--', '--', '--', '--', '--', '--', 'XXX']
+Expected Output: Score based on rules
