@@ -1,24 +1,32 @@
-const calculateBowlingScore = require('./bowlingGame');
+const calculateBowlingScore = require('./bowlingScoreCalculator'); // Assume this is your module
 
-describe('Bowling Game Score Calculator', () => {
-    test('All Strikes - Perfect Game', () => {
-        const frames = 'X X X X X X X X X XXX';
-        const expectedScore = 300;
-        const score = calculateBowlingScore(frames);
-        expect(score).toBe(expectedScore);
-    });
+describe('Bowling Score Calculator', () => {
+  test('Test All Gutter Balls', () => {
+    const frames = ['--', '--', '--', '--', '--', '--', '--', '--', '--', '--'];
+    const expectedScore = 0;
+    const actualScore = calculateBowlingScore(frames);
+    expect(actualScore).toBe(expectedScore);
+  });
 
-    test('All Spares with first throw knocking down 5 pins each', () => {
-        const frames = '5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5';
-        const expectedScore = 150;
-        const score = calculateBowlingScore(frames);
-        expect(score).toBe(expectedScore);
-    });
+  test('Test All Strikes', () => {
+    const frames = ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'XXX'];
+    const expectedScore = 300;
+    const actualScore = calculateBowlingScore(frames);
+    expect(actualScore).toBe(expectedScore);
+});
 
-    test('All Open Frames', () => {
-        const frames = '45 54 36 27 09 63 72 81 90 18';
-        const expectedScore = 90;
-        const score = calculateBowlingScore(frames);
-        expect(score).toBe(expectedScore);
-    });
+test('Test All Spares', () => {
+    const frames = ['5/', '5/', '5/', '5/', '5/', '5/', '5/', '5/', '5/', '5/5'];
+    const expectedScore = 150;
+    const actualScore = calculateBowlingScore(frames);
+    expect(actualScore).toBe(expectedScore);
+});
+
+test('Test Mixed Game', () => {
+    const frames = ['X', '7/', '72', '--', 'X', 'X', '35', '5/', '8/', 'XXX'];
+    const expectedScore = 163;  // Calculated expected score based on the rules
+    const actualScore = calculateBowlingScore(frames);
+    expect(actualScore).toBe(expectedScore);
+});
+
 });
