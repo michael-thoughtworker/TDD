@@ -29,4 +29,21 @@ test('Test Mixed Game', () => {
     expect(actualScore).toBe(expectedScore);
 });
 
+test('Test Final Frame Variations', () => {
+    const game1 = ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X5/']; // Strike followed by spare
+    const expectedScore1 = 285; // Calculated expected score based on the rules
+    const actualScore1 = calculateBowlingScore(game1);
+    expect(actualScore1).toBe(expectedScore1);
+
+    const game2 = ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '5/X']; // Spare followed by strike
+    const expectedScore2 = 275; // Calculated expected score based on the rules
+    const actualScore2 = calculateBowlingScore(game2);
+    expect(actualScore2).toBe(expectedScore2);
+
+    const game3 = ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'XXX']; // Three strikes
+    const expectedScore3 = 300; // Maximum score
+    const actualScore3 = calculateBowlingScore(game3);
+    expect(actualScore3).toBe(expectedScore3);
+});
+
 });

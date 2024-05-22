@@ -21,7 +21,11 @@ function calculateBowlingScore(frames) {
     // Calculate the score
     for (let i = 0, frameIndex = 0; frameIndex < 10; frameIndex++) {
         if (rolls[i] === 10) { // Strike
-            score += 10 + rolls[i + 1] + rolls[i + 2];
+            if (frameIndex === 9) { // 10th frame special handling
+                score += rolls[i] + rolls[i + 1] + rolls[i + 2];
+            } else {
+                score += 10 + rolls[i + 1] + rolls[i + 2];
+            }
             i++;
         } else if (rolls[i] + rolls[i + 1] === 10) { // Spare
             score += 10 + rolls[i + 2];
